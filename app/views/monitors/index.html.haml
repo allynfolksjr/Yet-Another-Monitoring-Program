@@ -6,7 +6,7 @@
     |
     = link_to "New Monitor", new_monitor_path
     %p
-    - @pingmonitors.each do |pingmonitor|
+    - @monitors.each do |pingmonitor|
       %p
       %strong=link_to pingmonitor.hostname, monitor_path(pingmonitor)
       %br

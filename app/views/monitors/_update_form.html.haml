@@ -4,7 +4,7 @@
     .form
     .form
       .fieldset
-      = simple_form_for @monitor,:url=>'/monitors/' do |f|
+      = simple_form_for @monitor,:url=>monitor_path(@monitor) do |f|
         = f.input :hostname
         / = f.simple_fields_for :web_monitor do |web_monitor|
         /   = f.input :url

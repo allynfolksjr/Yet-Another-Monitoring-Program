@@ -2,18 +2,18 @@ class MonitorsController < ApplicationController
 before_filter :authenticate_user!
 
 def index
-    @pingmonitors = BaseMonitor.all
+    @monitors = BaseMonitor.all
 
    # @new_monitor = BaseMonitor.order("name")
 end
 
 def show
-  @pingmonitor = BaseMonitor.find(params[:id])
+  @monitor = BaseMonitor.find(params[:id]).monitorable
 end
 
 def new
-  @pingmonitor = PingMonitor.new
-  @basemonitor = @pingmonitor.build_BaseMonitor
+  @monitor = PingMonitor.new
+  @basemonitor = @monitor.build_BaseMonitor
   # @new_monitor = BaseMonitor.new
   # ActiveRecord::Base.transaction do
   #   BaseMonitor.save!
@@ -21,10 +21,10 @@ def new
 end
 
 def create
-  @pingmonitor = PingMonitor.new(params[:ping_monitor])
+  @monitor = PingMonitor.new(params[:ping_monitor])
 
   # binding.pry
-    if @pingmonitor.save
+    if @monitor.save
       flash[:notice] = "Monitor has been created!"
     else
       flash[:notice] = "Monitor was not saved!"
@@ -33,14 +33,16 @@ def create
 end
 
 def edit
-  @pingmonitor = BaseMonitor.find(params[:id])
+  @monitor = BaseMonitor.find(params[:id]).monitorable
+  # binding.pry
 end
 
 def update
-  @pingmonitor = BaseMonitor.find(params[:id])
-  if @pingmonitor.update_attributes(params[:ping_monitor])
+  @monitor = BaseMonitor.find(params[:id]).monitorable
+  # binding.pry
+  if @monitor.update_attributes(params[:ping_monitor])
     flash[:success]= "Successfully updated monitor."
-    render :action => 'show', :id => @pingmonitor
+    render :action => 'show', :id => @monitor
   else
     flash[:alert]= "Monitor has not been updated."
     render :action => "edit"
@@ -49,8 +51,8 @@ def update
 end
 
 def destroy
-  @pingmonitor = BaseMonitor.find(params[:id])
-  @pingmonitor.destroy
+  @monitor = BaseMonitor.find(params[:id])
+  @monitor.destroy
   redirect_to monitors_url, notice: "Successfully deleted a monitor."
 end
 

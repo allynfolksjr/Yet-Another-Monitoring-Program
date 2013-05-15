@@ -11,10 +11,6 @@ class BaseMonitor < ActiveRecord::Base
     active
   end
 
-  def name
-
-  end
-
   def frequency=(minutes)
     update_attribute(:frequency_in_seconds, minutes*60)
   end

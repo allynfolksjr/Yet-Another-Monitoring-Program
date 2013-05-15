@@ -2,7 +2,7 @@
   .large-9.columns
     %h2 #{current_user}'s Dashboard
     %p
-    - @pingmonitors.each do |pingmonitor|
+    - @monitors.each do |pingmonitor|
       %p
       %strong=link_to pingmonitor.hostname, monitor_path(pingmonitor)
       %br
