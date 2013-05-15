@@ -37,10 +37,11 @@ def edit
 end
 
 def update
+  # binding.pry
   @monitor = BaseMonitor.find(params[:id]).monitorable
   if @monitor.update_attributes(params[:ping_monitor])
     flash[:success]= "Successfully updated monitor."
-    render :action => 'show', :id => @monitor
+    render :action => 'show', :id => @monitor.BaseMonitor
   else
     flash[:alert]= "Monitor has not been updated."
     render :action => "edit"

@@ -2,7 +2,7 @@ class BaseMonitor < ActiveRecord::Base
   attr_accessible :name, :description, :frequency, :active, :frequency_in_seconds
   belongs_to :monitorable, polymorphic: true
   delegate :do, to: :monitorable
-  delegate :hostname, to: :monitorable
+  # delegate :hostname, to: :monitorable
   belongs_to :user
 
   has_many :alerts

@@ -4,7 +4,7 @@
     %p
     - @monitors.each do |pingmonitor|
       %p
-      %strong=link_to pingmonitor.hostname, monitor_path(pingmonitor)
+      %strong=link_to pingmonitor, monitor_path(pingmonitor)
       %br
       =pingmonitor.description
       %p
