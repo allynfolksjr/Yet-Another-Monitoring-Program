@@ -1,13 +1,14 @@
 class Alert < ActiveRecord::Base
-  attr_accessible :active, :base_monitor_id, :alert_end, :resolution, :alert_start, :last_check
+  attr_accessible :active, :base_monitor_id, :alert_end, :resolution, :created_at
   belongs_to :base_monitor
   has_one :user, :through => :base_monitor
+  # attr_reader :created_at
 
   def duration
     if active?
-      Time.current - alert_start
+      Time.current - created_at
     else
-      alert_end - alert_start
+      alert_end - created_at
     end
   end
 

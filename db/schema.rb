@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513225521) do
+ActiveRecord::Schema.define(:version => 20130604053029) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -33,10 +33,8 @@ ActiveRecord::Schema.define(:version => 20130513225521) do
     t.boolean  "active",          :default => true
     t.string   "resolution"
     t.integer  "base_monitor_id"
-    t.datetime "last_check"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.datetime "alert_start"
     t.datetime "alert_end"
   end
 
